@@ -16,9 +16,8 @@ static_sites:
 - environment_slug: node-js
   github:
     branch: main
-    deploy_on_push: true
+    deploy_on_push: false
     repo: jkpe/do-db-config-ui
   name: web
   source_dir: /
   build_command: npm run build
-  
