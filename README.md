@@ -42,7 +42,7 @@ This project uses several GitHub Actions workflows to automate deployment and mo
 ### Monitoring Workflow
 
 - **Monitor DO OpenAPI Database Changes (`do-openapi.yml`):**  
-  - Runs every 6 hours to check for updates to DigitalOcean's OpenAPI specification
+  - Runs periodically to check for updates to DigitalOcean's OpenAPI specification
   - Monitors changes specifically in the database configuration models
   - Creates a pull request when changes are detected
   - Includes commit details and links to the original OpenAPI changes
