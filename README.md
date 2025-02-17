@@ -6,6 +6,16 @@ This project is a web application built with React and React Router that provide
 
 ---
 
+## Deploy Your Own Instance
+
+You can deploy your own instance of this application to DigitalOcean App Platform with just a few clicks using the button below:
+
+[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/jkpe/do-db-config-ui/tree/main)
+
+The deployment will automatically configure everything needed to run the application, including building from source and setting up the web service.
+
+---
+
 ## Usage
 
 When you open the application in your browser, you will see a multi-section interface:
