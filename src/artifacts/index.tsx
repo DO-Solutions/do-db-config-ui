@@ -1827,12 +1827,12 @@ const DatabaseConfigApp = () => {
         {/* Footer */}
         <div className="text-center text-gray-600 py-8">
           <p className="text-sm">
-            Thoughtfully crafted by the DigitalOcean Solutions Architects team. We hope you found it useful{' '}
+            Thoughtfully crafted by DigitalOcean’s Solutions Architects team. We hope you found it useful.{' '}
             <span role="img" aria-label="heart" className="text-red-500">❤️</span>
           </p>
           <p className="text-sm mt-2">
             <a 
-              href="https://github.com/do-solutions/do-db-config-ui"
+              href="https://github.com/jkpe/do-db-config-ui"
               className="text-blue-600 hover:text-blue-800"
               target="_blank"
               rel="noopener noreferrer"
