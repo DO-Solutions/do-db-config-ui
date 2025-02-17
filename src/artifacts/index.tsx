@@ -333,9 +333,11 @@ const MySQLConfigForm = ({ databaseId, onDatabaseIdChange }) => {
       example: 25
     },
     innodb_flush_neighbors: {
-      type: 'select',
-      options: [0, 1, 2],
+      type: 'number',
+      min: 0,
+      max: 2,
       description: 'Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent. 0: disables this functionality, 1: flushes contiguous dirty pages, 2: flushes dirty pages in the same extent.',
+      example: 1
     },
     innodb_read_io_threads: {
       type: 'number',
