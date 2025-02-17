@@ -104,7 +104,7 @@ const GeneratedCommands = ({ commands, onCopy }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow border border-gray-200">
+    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
       <div className="space-y-6">
         {/* curl Command */}
         <div>
@@ -1754,7 +1754,7 @@ const DatabaseConfigApp = () => {
         </div>
 
         {/* Database ID Input */}
-        <div className="bg-white p-6 rounded-lg shadow border border-gray-200">
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <label className="block text-lg font-semibold mb-2">Database ID</label>
           <input
             type="text"
@@ -1766,7 +1766,7 @@ const DatabaseConfigApp = () => {
         </div>
 
         {/* Database Type Tabs */}
-        <div className="bg-white rounded-lg shadow border border-gray-200">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
           <div className="border-b border-gray-200">
             <nav className="flex">
               {tabs.map((tab) => (
