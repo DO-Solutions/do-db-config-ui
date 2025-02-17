@@ -376,7 +376,7 @@ const MySQLConfigForm = ({ databaseId, onDatabaseIdChange }) => {
 
 
   const handleInputChange = (name, value) => {
-    if (value === '') {
+    if (value === null || value === undefined) {
       const newConfig = { ...config };
       delete newConfig[name];
       setConfig(newConfig);
@@ -858,7 +858,7 @@ const PostgreSQLConfigForm = ({ databaseId, onDatabaseIdChange }) => {
 
 
   const handleInputChange = (name, value) => {
-    if (value === '') {
+    if (value === null || value === undefined) {
       const newConfig = { ...config };
       delete newConfig[name];
       setConfig(newConfig);
@@ -1013,7 +1013,7 @@ volatile-ttl: Evict keys with expiration only, shortest time-to-live (TTL) first
   };
 
   const handleInputChange = (name, value) => {
-    if (value === '') {
+    if (value === null || value === undefined) {
       const newConfig = { ...config };
       delete newConfig[name];
       setConfig(newConfig);
@@ -1088,7 +1088,7 @@ const MongoConfigForm = ({ databaseId, onDatabaseIdChange }) => {
 
 
   const handleInputChange = (name, value) => {
-    if (value === '') {
+    if (value === null || value === undefined) {
       const newConfig = { ...config };
       delete newConfig[name];
       setConfig(newConfig);
@@ -1378,7 +1378,7 @@ const OpenSearchConfigForm = ({ databaseId, onDatabaseIdChange }) => {
 
 
   const handleInputChange = (name, value) => {
-    if (value === '') {
+    if (value === null || value === undefined) {
       const newConfig = { ...config };
       delete newConfig[name];
       setConfig(newConfig);
@@ -1685,7 +1685,7 @@ const KafkaConfigForm = ({ databaseId, onDatabaseIdChange }) => {
 
 
   const handleInputChange = (name, value) => {
-    if (value === '') {
+    if (value === null || value === undefined) {
       const newConfig = { ...config };
       delete newConfig[name];
       setConfig(newConfig);
@@ -1829,7 +1829,7 @@ const DatabaseConfigApp = () => {
         {/* Footer */}
         <div className="text-center text-gray-600 py-8">
           <p className="text-sm">
-            Thoughtfully crafted by DigitalOcean’s Solutions Architects team. We hope you found it useful.{' '}
+            Thoughtfully crafted by DigitalOcean's Solutions Architects team. We hope you found it useful. {' '}
             <span role="img" aria-label="heart" className="text-red-500">❤️</span>
           </p>
           <p className="text-sm mt-2">
