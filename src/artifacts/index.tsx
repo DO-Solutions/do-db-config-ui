@@ -22,7 +22,7 @@ const ConfigField = ({ name, field, onChange, value }) => {
         
         {field.type === 'select' ? (
           <select
-            value={value || ''}
+            value={value !== undefined && value !== null ? value : ''}
             onChange={(e) => onChange(name, e.target.value)}
             className="w-full p-2 border border-gray-300 rounded-md bg-white text-black"
           >
@@ -44,7 +44,7 @@ const ConfigField = ({ name, field, onChange, value }) => {
         ) : (
           <input
             type={field.type}
-            value={value || ''}
+            value={value !== undefined && value !== null ? value : ''}
             min={field.min}
             max={field.max}
             pattern={field.pattern}
