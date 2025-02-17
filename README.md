@@ -1,6 +1,6 @@
 # Configure Advanced Settings for DigitalOcean Managed Databases
 
-[![Changelog](https://img.shields.io/github/v/release/do-solutions/do-db-config-ui?include_prereleases&label=changelog)](https://github.com/do-solutions/do-db-config-ui/releases)
+[![Changelog](https://img.shields.io/github/v/release/jkpe/do-db-config-ui?include_prereleases&label=changelog)](https://github.com/jkpe/do-db-config-ui/releases)
 
 This project is a web application built with React and React Router that provides a user interface for configuring advanced settings on DigitalOcean Managed Databases. The tool allows you to customize configuration options for various database engines (MySQL, PostgreSQL, Redis, MongoDB, Kafka, OpenSearch) and then generates API requests (including preformatted `curl` and `doctl` commands) so you can update your databases via DigitalOcean's API.
 
