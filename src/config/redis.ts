@@ -39,5 +39,48 @@ volatile-ttl: Evict keys with expiration only, shortest time-to-live (TTL) first
     description: 'Redis IO thread count',
     example: 4
   },
-  // ... rest of the Redis config fields
+  redis_lfu_log_factor: {
+    type: 'number',
+    min: 0,
+    max: 100,
+    description: 'Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies',
+    example: 12
+  },
+  redis_lfu_decay_time: {
+    type: 'number',
+    min: 1,
+    max: 120,
+    description: 'LFU maxmemory-policy counter decay time in minutes',
+    example: 5
+  },
+  redis_ssl: {
+    type: 'checkbox',
+    description: 'Require SSL to access Redis. When enabled, Redis accepts only SSL connections on port `25061`. When disabled, port `25060` is opened for non-SSL connections, while port `25061` remains available for SSL connections.',
+  },
+  redis_timeout: {
+    type: 'number',
+    min: 0,
+    max: 31536000,
+    description: 'Redis idle connection timeout in seconds',
+    example: 120
+  },
+  redis_notify_keyspace_events: {
+    type: 'text',
+    pattern: '^[KEg\\$lshzxeA]*$',
+    maxLength: 32,
+    description: 'Set notify-keyspace-events option. Requires at least `K` or `E` and accepts any combination of the following options: K (Keyspace events), E (Keyevent events), g (Generic commands), $ (String commands), l (List commands), s (Set commands), h (Hash commands), z (Sorted set commands), t (Stream commands), d (Module key type events), x (Expired events), e (Evicted events), m (Key miss events), n (New key events), A (Alias for "g$lshztxed")',
+    example: 'Ex'
+  },
+  redis_persistence: {
+    type: 'select',
+    options: ['off', 'rdb'],
+    description: 'Creates an RDB dump of the database every 10 minutes that can be used to recover data after a node crash. The database does not create the dump if no keys have changed since the last dump. When set to `off`, the database cannot fork services, and data can be lost if a service is restarted or powered off.',
+    example: 'rdb'
+  },
+  redis_acl_channels_default: {
+    type: 'select',
+    options: ['allchannels', 'resetchannels'],
+    description: 'Determines default pub/sub channels\' ACL for new users if ACL is not supplied. When this option is not defined, all_channels is assumed to keep backward compatibility.',
+    example: 'resetchannels'
+  }
 }; 
