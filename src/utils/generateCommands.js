@@ -1,0 +1,14 @@
+export const generateCommands = (databaseId, config, engine) => {
+    if (!databaseId || Object.keys(config).length === 0)
+        return { curl: '', doctl: '' };
+    const jsonBody = JSON.stringify({ config }, null, 2);
+    const compactJsonBody = JSON.stringify(config);
+    return {
+        curl: `curl -X PATCH \\
+  -H "Content-Type: application/json" \\
+  -H "Authorization: Bearer YOUR_API_TOKEN" \\
+  -d '${jsonBody}' \\
+  "https://api.digitalocean.com/v2/databases/${databaseId}/config"`,
+        doctl: `doctl databases configuration update ${databaseId} --engine ${engine} --config-json '${compactJsonBody}'`
+    };
+};
