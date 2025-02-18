@@ -30,12 +30,13 @@ const ConfigField = ({ name, field, onChange, value }: ConfigFieldProps) => {
   return (
     <div className="p-4 bg-white rounded-lg border border-gray-200">
       <div className="space-y-2">
-        <label className="block font-medium text-lg text-black">
+        <label className="block font-medium text-lg text-black" htmlFor={name}>
           {name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
         </label>
         
         {field.type === 'select' ? (
           <select
+            id={name}
             value={value !== undefined && value !== null ? value : ''}
             onChange={(e) => onChange(name, e.target.value)}
             className="w-full p-2 border border-gray-300 rounded-md bg-white text-black"
