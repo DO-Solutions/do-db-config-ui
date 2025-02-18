@@ -4,7 +4,12 @@ export interface PostgresConfig {
   [key: string]: string | number | boolean;
 }
 
-export const postgresConfigFields: Record<string, ConfigField> = {
+interface ConfigSection {
+  title: string;
+  fields: Record<string, ConfigField>;
+}
+
+export const postgresConfigFields: Record<string, ConfigSection> = {
   postgres: {
     title: 'PostgreSQL Core Settings',
     fields: {
