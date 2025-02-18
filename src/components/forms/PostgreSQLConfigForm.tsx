@@ -36,41 +36,61 @@ const PostgreSQLConfigForm = ({ databaseId, onDatabaseIdChange }: PostgreSQLConf
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center gap-3 text-sm">
-        <span className="text-gray-600">Jump to ↓</span>
-        {Object.entries(postgresConfigFields).map(([sectionKey, section], index, array) => (
-          <React.Fragment key={sectionKey}>
+      {/* PostgreSQL Core Settings with Jump To Navigation */}
+      <div id="postgres">
+        <div className="flex items-center gap-6 mb-4">
+          <h2 className="text-xl font-bold text-gray-900">PostgreSQL Core Settings</h2>
+          <div className="flex items-center gap-3 text-sm">
+            <span className="text-gray-600">Jump to ↓</span>
             <a
-              href={`#${sectionKey.toLowerCase()}`}
+              href="#timescaledb"
               className="text-blue-600 hover:text-blue-800"
             >
-              {section.title}
+              TimescaleDB Settings
             </a>
-            {index < array.length - 1 && (
-              <span className="text-gray-300">•</span>
-            )}
-          </React.Fragment>
-        ))}
-      </div>
-
-      {Object.entries(postgresConfigFields).map(([sectionKey, section]) => (
-        <div key={sectionKey} className="space-y-6" id={sectionKey.toLowerCase()}>
-          <h2 className="text-xl font-bold text-gray-900 border-b border-gray-200 pb-2">
-            {section.title}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {Object.entries(section.fields).map(([name, field]) => (
-              <ConfigField
-                key={name}
-                name={name}
-                field={field as ConfigFieldType}
-                value={config[name]}
-                onChange={handleInputChange}
-              />
-            ))}
+            <span className="text-gray-300">•</span>
+            <a
+              href="#pgbouncer"
+              className="text-blue-600 hover:text-blue-800"
+            >
+              PgBouncer Settings
+            </a>
           </div>
         </div>
-      ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {Object.entries(postgresConfigFields.postgres.fields).map(([name, field]) => (
+            <ConfigField
+              key={name}
+              name={name}
+              field={field as ConfigFieldType}
+              value={config[name]}
+              onChange={handleInputChange}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Other Sections */}
+      {Object.entries(postgresConfigFields)
+        .filter(([key]) => key !== 'postgres')
+        .map(([sectionKey, section]) => (
+          <div key={sectionKey} className="space-y-6" id={sectionKey.toLowerCase()}>
+            <h2 className="text-xl font-bold text-gray-900">
+              {section.title}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {Object.entries(section.fields).map(([name, field]) => (
+                <ConfigField
+                  key={name}
+                  name={name}
+                  field={field as ConfigFieldType}
+                  value={config[name]}
+                  onChange={handleInputChange}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
 
       {databaseId && Object.keys(config).length > 0 && (
         <GeneratedCommands commands={commands} />
