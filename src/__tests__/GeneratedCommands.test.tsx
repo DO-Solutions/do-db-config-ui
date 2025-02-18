@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import GeneratedCommands from '../components/GeneratedCommands';
 
 describe('GeneratedCommands', () => {
@@ -17,8 +18,9 @@ describe('GeneratedCommands', () => {
   it('renders both commands', () => {
     render(<GeneratedCommands commands={mockCommands} />);
     
-    expect(screen.getByText(/curl command/i)).toBeInTheDocument();
-    expect(screen.getByText(/doctl command/i)).toBeInTheDocument();
+    // Use a more specific selector for the command headers
+    expect(screen.getByRole('heading', { name: /generated.*curl.*command/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /generated.*doctl.*command/i })).toBeInTheDocument();
     expect(screen.getByText(mockCommands.curl)).toBeInTheDocument();
     expect(screen.getByText(mockCommands.doctl)).toBeInTheDocument();
   });
@@ -26,7 +28,7 @@ describe('GeneratedCommands', () => {
   it('copies commands to clipboard when clicking copy button', async () => {
     render(<GeneratedCommands commands={mockCommands} onCopy={mockOnCopy} />);
     
-    const copyButtons = screen.getAllByText('Copy');
+    const copyButtons = screen.getAllByRole('button', { name: /copy/i });
     
     // Test copying curl command
     await fireEvent.click(copyButtons[0]);
@@ -42,9 +44,12 @@ describe('GeneratedCommands', () => {
   it('shows "Copied!" text after copying', async () => {
     render(<GeneratedCommands commands={mockCommands} />);
     
-    const copyButtons = screen.getAllByText('Copy');
+    const copyButtons = screen.getAllByRole('button', { name: /copy/i });
     await fireEvent.click(copyButtons[0]);
     
-    expect(screen.getByText('Copied!')).toBeInTheDocument();
+    // Wait for the "Copied!" text to appear
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: /copied!/i })).toBeInTheDocument();
+    });
   });
 }); 

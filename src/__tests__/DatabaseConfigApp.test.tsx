@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, within } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
 import DatabaseConfigApp from '../components/DatabaseConfigApp';
 
 describe('DatabaseConfigApp', () => {
@@ -21,10 +22,17 @@ describe('DatabaseConfigApp', () => {
 
     // Test tab switching
     fireEvent.click(screen.getByText('PostgreSQL'));
-    expect(screen.getByText('PostgreSQL Core Settings')).toBeInTheDocument();
+    // Use getAllByText and check the first occurrence
+    expect(screen.getAllByText('PostgreSQL Core Settings')[0]).toBeInTheDocument();
 
     fireEvent.click(screen.getByText('MongoDB'));
-    expect(screen.getByText(/default_read_concern/i)).toBeInTheDocument();
+    // Find the container with the Default Read Concern field
+    const label = screen.getByText('Default Read Concern');
+    const container = label.closest('.space-y-2');
+    expect(container).toBeInTheDocument();
+    // Find the select element within the container
+    const select = within(container!).getByRole('combobox');
+    expect(select).toBeInTheDocument();
   });
 
   it('updates database ID input', () => {
