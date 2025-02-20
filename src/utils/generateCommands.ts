@@ -7,7 +7,7 @@ export const generateCommands = (databaseId: string, config: any, engine: string
   return {
     curl: `curl -X PATCH \\
   -H "Content-Type: application/json" \\
-  -H "Authorization: Bearer YOUR_API_TOKEN" \\
+  -H "Authorization: Bearer $DIGITALOCEAN_TOKEN" \\
   -d '${jsonBody}' \\
   "https://api.digitalocean.com/v2/databases/${databaseId}/config"`,
     
