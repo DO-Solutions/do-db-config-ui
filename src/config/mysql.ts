@@ -1,7 +1,8 @@
 export interface ConfigField {
-  type: 'number' | 'text' | 'select' | 'checkbox';
+  type: 'number' | 'text' | 'select' | 'checkbox' | 'integer';
   min?: number;
   max?: number;
+  minLength?: number;
   maxLength?: number;
   pattern?: string;
   description: string;
@@ -15,14 +16,14 @@ export interface MySQLConfig {
 
 export const mysqlConfigFields: Record<string, ConfigField> = {
   backup_hour: { 
-    type: 'number', 
+    type: 'integer', 
     min: 0, 
     max: 23,
     description: 'The hour of day (in UTC) when backup for the service starts. New backup only starts if previous backup has already completed.',
     example: 3
   },
   backup_minute: { 
-    type: 'number', 
+    type: 'integer', 
     min: 0, 
     max: 59,
     description: 'The minute of the backup hour when backup for the service starts. New backup only starts if previous backup has already completed.',
@@ -36,10 +37,10 @@ export const mysqlConfigFields: Record<string, ConfigField> = {
     example: 'ANSI,TRADITIONAL'
   },
   connect_timeout: { 
-    type: 'number', 
+    type: 'integer', 
     min: 2, 
     max: 3600,
-    description: 'The number of seconds that the mysqld server waits for a connect packet before responding with bad handshake.',
+    description: 'The integer of seconds that the mysqld server waits for a connect packet before responding with bad handshake.',
     example: 10
   },
   default_time_zone: { 
@@ -50,21 +51,21 @@ export const mysqlConfigFields: Record<string, ConfigField> = {
     example: '+03:00'
   },
   group_concat_max_len: {
-    type: 'number',
+    type: 'integer',
     min: 4,
     max: 18446744073709552000,
     description: 'The maximum permitted result length, in bytes, for the GROUP_CONCAT() function.',
     example: 1024
   },
   information_schema_stats_expiry: {
-    type: 'number',
+    type: 'integer',
     min: 900,
     max: 31536000,
     description: 'The time, in seconds, before cached statistics expire.',
     example: 86400
   },
   innodb_ft_min_token_size: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 16,
     description: 'The minimum length of words that an InnoDB FULLTEXT index stores.',
@@ -78,21 +79,21 @@ export const mysqlConfigFields: Record<string, ConfigField> = {
     example: 'db_name/table_name'
   },
   innodb_lock_wait_timeout: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 3600,
     description: 'The time, in seconds, that an InnoDB transaction waits for a row lock before giving up.',
     example: 50
   },
   innodb_log_buffer_size: {
-    type: 'number',
+    type: 'integer',
     min: 1048576,
     max: 4294967295,
     description: 'The size of the buffer, in bytes, that InnoDB uses to write to the log files on disk.',
     example: 16777216
   },
   innodb_online_alter_log_max_size: {
-    type: 'number',
+    type: 'integer',
     min: 65536,
     max: 1099511627776,
     description: 'The upper limit, in bytes, of the size of the temporary log files used during online DDL operations for InnoDB tables.',
@@ -107,7 +108,7 @@ export const mysqlConfigFields: Record<string, ConfigField> = {
     description: 'When enabled, transaction timeouts cause InnoDB to abort and roll back the entire transaction.'
   },
   interactive_timeout: {
-    type: 'number',
+    type: 'integer',
     min: 30,
     max: 604800,
     description: 'The time, in seconds, the server waits for activity on an interactive connection before closing it.',
@@ -120,17 +121,17 @@ export const mysqlConfigFields: Record<string, ConfigField> = {
     example: 'TempTable'
   },
   net_read_timeout: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 3600,
     description: 'The time, in seconds, to wait for more data from an existing connection before aborting the read.',
     example: 30
   },
   net_write_timeout: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 3600,
-    description: 'The number of seconds to wait for a block to be written to a connection before aborting the write.',
+    description: 'The integer of seconds to wait for a block to be written to a connection before aborting the write.',
     example: 30
   },
   sql_require_primary_key: {
@@ -138,35 +139,35 @@ export const mysqlConfigFields: Record<string, ConfigField> = {
     description: 'Require primary key to be defined for new tables or old tables modified with ALTER TABLE and fail if missing. It is recommended to always have primary keys because various functionality may break if any large table is missing them.'
   },
   wait_timeout: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 2147483,
-    description: 'The number of seconds the server waits for activity on a noninteractive connection before closing it.',
+    description: 'The integer of seconds the server waits for activity on a noninteractive connection before closing it.',
     example: 28800
   },
   max_allowed_packet: {
-    type: 'number',
+    type: 'integer',
     min: 102400,
     max: 1073741824,
     description: 'The size of the largest message, in bytes, that can be received by the server. Default is 67108864 (64M).',
     example: 67108864
   },
   max_heap_table_size: {
-    type: 'number',
+    type: 'integer',
     min: 1048576,
     max: 1073741824,
     description: 'The maximum size, in bytes, of internal in-memory tables. Also set tmp_table_size. Default is 16777216 (16M).',
     example: 16777216
   },
   sort_buffer_size: {
-    type: 'number',
+    type: 'integer',
     min: 32768,
     max: 1073741824,
     description: 'The sort buffer size, in bytes, for ORDER BY optimization. Default is 262144 (256K).',
     example: 262144
   },
   tmp_table_size: {
-    type: 'number',
+    type: 'integer',
     min: 1048576,
     max: 1073741824,
     description: 'The maximum size, in bytes, of internal in-memory tables. Also set max_heap_table_size. Default is 16777216 (16M).',
@@ -191,41 +192,41 @@ export const mysqlConfigFields: Record<string, ConfigField> = {
     example: 600
   },
   innodb_change_buffer_max_size: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 50,
     description: 'Specifies the maximum size of the InnoDB change buffer as a percentage of the buffer pool.',
     example: 25
   },
   innodb_flush_neighbors: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 2,
     description: 'Specifies whether flushing a page from the InnoDB buffer pool also flushes other dirty pages in the same extent. 0: disables this functionality, 1: flushes contiguous dirty pages, 2: flushes dirty pages in the same extent.',
     example: 1
   },
   innodb_read_io_threads: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 64,
-    description: 'The number of I/O threads for read operations in InnoDB. Changing this parameter will lead to a restart of the MySQL service.',
+    description: 'The integer of I/O threads for read operations in InnoDB. Changing this parameter will lead to a restart of the MySQL service.',
     example: 16
   },
   innodb_write_io_threads: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 64,
-    description: 'The number of I/O threads for write operations in InnoDB. Changing this parameter will lead to a restart of the MySQL service.',
+    description: 'The integer of I/O threads for write operations in InnoDB. Changing this parameter will lead to a restart of the MySQL service.',
     example: 16
   },
   innodb_thread_concurrency: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 1000,
-    description: 'Defines the maximum number of threads permitted inside of InnoDB. A value of 0 (the default) is interpreted as infinite concurrency (no limit). This variable is intended for performance tuning on high concurrency systems.',
+    description: 'Defines the maximum integer of threads permitted inside of InnoDB. A value of 0 (the default) is interpreted as infinite concurrency (no limit). This variable is intended for performance tuning on high concurrency systems.',
   },
   net_buffer_length: {
-    type: 'number',
+    type: 'integer',
     min: 1024,
     max: 1048576,
     description: 'Start sizes of connection buffer and result buffer, must be multiple of 1024. Changing this parameter will lead to a restart of the MySQL service.',
