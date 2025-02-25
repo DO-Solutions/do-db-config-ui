@@ -14,38 +14,38 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
     title: 'PostgreSQL Core Settings',
     fields: {
       autovacuum_freeze_max_age: {
-        type: 'number',
+        type: 'integer',
         min: 200000000,
         max: 1500000000,
         description: 'Specifies the maximum age (in transactions) that a table\'s pg_class.relfrozenxid field can attain before a VACUUM operation is forced to prevent transaction ID wraparound within the table.',
         example: 1000000000
       },
       autovacuum_max_workers: {
-        type: 'number',
+        type: 'integer',
         min: 1,
         max: 20,
-        description: 'Specifies the maximum number of autovacuum processes (other than the autovacuum launcher) that may be running at any one time.',
+        description: 'Specifies the maximum integer of autovacuum processes (other than the autovacuum launcher) that may be running at any one time.',
         example: 10
       },
       autovacuum_naptime: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 86400,
         description: 'Specifies the minimum delay, in seconds, between autovacuum runs on any given database.',
         example: 15
       },
       autovacuum_vacuum_threshold: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 2147483647,
-        description: 'Specifies the minimum number of updated or deleted tuples needed to trigger a VACUUM in any one table.',
+        description: 'Specifies the minimum integer of updated or deleted tuples needed to trigger a VACUUM in any one table.',
         example: 25
       },
       autovacuum_analyze_threshold: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 2147483647,
-        description: 'Specifies the minimum number of inserted, updated, or deleted tuples needed to trigger an ANALYZE in any one table.',
+        description: 'Specifies the minimum integer of inserted, updated, or deleted tuples needed to trigger an ANALYZE in any one table.',
         example: 25
       },
       autovacuum_vacuum_scale_factor: {
@@ -63,63 +63,63 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
         example: 0.05
       },
       autovacuum_vacuum_cost_delay: {
-        type: 'number',
+        type: 'integer',
         min: -1,
         max: 100,
         description: 'Specifies the cost delay value, in milliseconds, that will be used in automatic VACUUM operations.',
         example: 2
       },
       autovacuum_vacuum_cost_limit: {
-        type: 'number',
+        type: 'integer',
         min: -1,
         max: 10000,
         description: 'Specifies the cost limit value that will be used in automatic VACUUM operations.',
         example: 2000
       },
       backup_hour: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 23,
         description: 'The hour of day (in UTC) when backup for the service starts.',
         example: 2
       },
       backup_minute: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 59,
         description: 'The minute of the backup hour when backup for the service starts.',
         example: 0
       },
       bgwriter_delay: {
-        type: 'number',
+        type: 'integer',
         min: 10,
         max: 10000,
         description: 'Specifies the delay, in milliseconds, between activity rounds for the background writer.',
         example: 50
       },
       bgwriter_flush_after: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 2048,
         description: 'The amount of kilobytes that need to be written by the background writer before attempting to force the OS to issue these writes to underlying storage.',
         example: 64
       },
       bgwriter_lru_maxpages: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 1073741823,
-        description: 'The maximum number of buffers that the background writer can write.',
+        description: 'The maximum integer of buffers that the background writer can write.',
         example: 1000
       },
       bgwriter_lru_multiplier: {
         type: 'number',
         min: 0,
         max: 10,
-        description: 'The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the number that will be needed during the next round.',
+        description: 'The average recent need for new buffers is multiplied by bgwriter_lru_multiplier to arrive at an estimate of the integer that will be needed during the next round.',
         example: 4
       },
       deadlock_timeout: {
-        type: 'number',
+        type: 'integer',
         min: 500,
         max: 1800000,
         description: 'The amount of time, in milliseconds, to wait on a lock before checking to see if there is a deadlock condition.',
@@ -132,10 +132,10 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
         example: 'lz4'
       },
       idle_in_transaction_session_timeout: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 604800000,
-        description: 'Time out sessions with open transactions after this number of milliseconds',
+        description: 'Time out sessions with open transactions after this integer of milliseconds',
         example: 300000
       },
       jit: {
@@ -144,10 +144,10 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
         example: true
       },
       log_autovacuum_min_duration: {
-        type: 'number',
+        type: 'integer',
         min: -1,
         max: 2147483647,
-        description: 'Causes each action executed by autovacuum to be logged if it ran for at least the specified number of milliseconds.',
+        description: 'Causes each action executed by autovacuum to be logged if it ran for at least the specified integer of milliseconds.',
         example: 1000
       },
       log_error_verbosity: {
@@ -167,94 +167,94 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
         example: '%t [%p]: [%l-1] user=%u,db=%d,app=%a,client=%h'
       },
       log_min_duration_statement: {
-        type: 'number',
+        type: 'integer',
         min: -1,
         max: 86400000,
-        description: 'Log statements that take more than this number of milliseconds to run.',
+        description: 'Log statements that take more than this integer of milliseconds to run.',
         example: 1000
       },
       max_files_per_process: {
-        type: 'number',
+        type: 'integer',
         min: 1000,
         max: 4096,
-        description: 'PostgreSQL maximum number of files that can be open per process.',
+        description: 'PostgreSQL maximum integer of files that can be open per process.',
         example: 4096
       },
       max_prepared_transactions: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 10000,
         description: 'PostgreSQL maximum prepared transactions.',
         example: 100
       },
       max_pred_locks_per_transaction: {
-        type: 'number',
+        type: 'integer',
         min: 64,
         max: 640,
         description: 'PostgreSQL maximum predicate locks per transaction.',
         example: 256
       },
       max_locks_per_transaction: {
-        type: 'number',
+        type: 'integer',
         min: 64,
         max: 6400,
         description: 'PostgreSQL maximum locks per transaction.',
         example: 256
       },
       max_stack_depth: {
-        type: 'number',
+        type: 'integer',
         min: 2097152,
         max: 6291456,
         description: 'Maximum depth of the stack in bytes.',
         example: 4194304
       },
       max_standby_archive_delay: {
-        type: 'number',
+        type: 'integer',
         min: 1,
         max: 43200000,
         description: 'Max standby archive delay in milliseconds.',
         example: 300000
       },
       max_standby_streaming_delay: {
-        type: 'number',
+        type: 'integer',
         min: 1,
         max: 43200000,
         description: 'Max standby streaming delay in milliseconds.',
         example: 300000
       },
       max_replication_slots: {
-        type: 'number',
+        type: 'integer',
         min: 8,
         max: 64,
         description: 'PostgreSQL maximum replication slots.',
         example: 32
       },
       max_logical_replication_workers: {
-        type: 'number',
+        type: 'integer',
         min: 4,
         max: 64,
         description: 'PostgreSQL maximum logical replication workers.',
         example: 32
       },
       max_parallel_workers: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 96,
-        description: 'Sets the maximum number of workers that the system can support for parallel queries.',
+        description: 'Sets the maximum integer of workers that the system can support for parallel queries.',
         example: 32
       },
       max_parallel_workers_per_gather: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 96,
-        description: 'Sets the maximum number of workers that can be started by a single Gather or Gather Merge node.',
+        description: 'Sets the maximum integer of workers that can be started by a single Gather or Gather Merge node.',
         example: 16
       },
       max_worker_processes: {
-        type: 'number',
+        type: 'integer',
         min: 8,
         max: 96,
-        description: 'Sets the maximum number of background processes that the system can support.',
+        description: 'Sets the maximum integer of background processes that the system can support.',
         example: 32
       },
       pg_partman_bgw_role: {
@@ -265,7 +265,7 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
         example: 'postgres'
       },
       pg_partman_bgw_interval: {
-        type: 'number',
+        type: 'integer',
         min: 3600,
         max: 604800,
         description: 'Sets the time interval to run pg_partman\'s scheduled tasks.',
@@ -278,7 +278,7 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
         example: 'top'
       },
       temp_file_limit: {
-        type: 'number',
+        type: 'integer',
         min: -1,
         max: 2147483647,
         description: 'PostgreSQL temporary file limit in KiB. If -1, sets to unlimited.',
@@ -291,10 +291,10 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
         example: 'UTC'
       },
       track_activity_query_size: {
-        type: 'number',
+        type: 'integer',
         min: 1024,
         max: 10240,
-        description: 'Specifies the number of bytes reserved to track the currently executing command for each active session.',
+        description: 'Specifies the integer of bytes reserved to track the currently executing command for each active session.',
         example: 4096
       },
       track_commit_timestamp: {
@@ -316,21 +316,21 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
         example: 'on'
       },
       max_wal_senders: {
-        type: 'number',
+        type: 'integer',
         min: 20,
         max: 64,
         description: 'PostgreSQL maximum WAL senders.',
         example: 40
       },
       wal_sender_timeout: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 10800000,
         description: 'Terminate replication connections that are inactive for longer than this amount of time, in milliseconds.',
         example: 120000
       },
       wal_writer_delay: {
-        type: 'number',
+        type: 'integer',
         min: 10,
         max: 200,
         description: 'WAL flush interval in milliseconds.',
@@ -344,7 +344,7 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
         example: 45
       },
       work_mem: {
-        type: 'number',
+        type: 'integer',
         min: 1,
         max: 1024,
         description: 'The maximum amount of memory, in MB, used by a query operation before writing to temporary disk files.',
@@ -362,10 +362,10 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
         example: true
       },
       max_failover_replication_time_lag: {
-        type: 'number',
+        type: 'integer',
         min: 10,
         max: 9223372036854776000,
-        description: 'Number of seconds of master unavailability before triggering database failover to standby.',
+        description: 'integer of seconds of master unavailability before triggering database failover to standby.',
         example: 30
       }
     }
@@ -379,28 +379,28 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
         example: true
       },
       min_pool_size: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 10000,
-        description: 'If current server connections are below this number, adds more.',
+        description: 'If current server connections are below this integer, adds more.',
         example: 10
       },
       server_lifetime: {
-        type: 'number',
+        type: 'integer',
         min: 60,
         max: 86400,
         description: 'The pooler closes any unused server connection that has been connected longer than this amount of seconds.',
         example: 7200
       },
       server_idle_timeout: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 86400,
         description: 'Drops server connections if they have been idle more than this many seconds.',
         example: 1800
       },
       autodb_pool_size: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 10000,
         description: 'If non-zero, automatically creates a pool of that size per user when a pool doesn\'t exist.',
@@ -413,14 +413,14 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
         example: 'transaction'
       },
       autodb_max_db_connections: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 2147483647,
         description: 'Only allows a maximum this many server connections per database (regardless of user). If 0, allows unlimited connections.',
         example: 100
       },
       autodb_idle_timeout: {
-        type: 'number',
+        type: 'integer',
         min: 0,
         max: 86400,
         description: 'If the automatically-created database pools have been unused this many seconds, they are freed. If 0, timeout is disabled.',
@@ -439,10 +439,10 @@ export const postgresConfigFields: Record<string, ConfigSection> = {
     title: 'TimescaleDB Settings',
     fields: {
       max_background_workers: {
-        type: 'number',
+        type: 'integer',
         min: 1,
         max: 4096,
-        description: 'The number of background workers for timescaledb operations. Set to the sum of your number of databases and the total number of concurrent background workers you want running at any given point in time.',
+        description: 'The integer of background workers for timescaledb operations. Set to the sum of your integer of databases and the total integer of concurrent background workers you want running at any given point in time.',
         example: 16
       }
     }
