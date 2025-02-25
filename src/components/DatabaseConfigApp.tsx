@@ -25,6 +25,17 @@ const configCounts = {
   opensearch: Object.keys(openSearchConfigFields).length
 };
 
+// Add this near the top of your file, after the imports
+const styles = `
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;     /* Firefox */
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;             /* Chrome, Safari and Opera */
+  }
+`;
+
 const DatabaseConfigApp = () => {
   const [activeTab, setActiveTab] = useState('mysql');
   const [databaseId, setDatabaseId] = useState('');
@@ -45,6 +56,8 @@ const DatabaseConfigApp = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 text-black p-6">
+      {/* Add the style tag */}
+      <style>{styles}</style>
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="bg-[rgb(0,128,255)] text-white p-6 rounded-lg shadow-lg">
@@ -77,12 +90,12 @@ const DatabaseConfigApp = () => {
         {/* Database Type Tabs */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
           <div className="border-b border-gray-200">
-            <nav className="flex">
+            <nav className="flex flex-wrap">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-6 py-3 text-sm font-medium border-b-2 ${
+                  className={`px-4 sm:px-6 py-3 text-sm font-medium border-b-2 ${
                     activeTab === tab.id
                       ? 'border-blue-500 text-blue-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -102,7 +115,7 @@ const DatabaseConfigApp = () => {
                   {getFormattedDatabaseName()} Configuration Options
                 </h2>
                 <div className="ml-4 px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
-                  {configCounts[activeTab]} options
+                  {configCounts[activeTab as keyof typeof configCounts]} options
                 </div>
               </div>
             </div>
