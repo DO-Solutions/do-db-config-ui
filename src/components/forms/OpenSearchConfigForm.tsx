@@ -20,7 +20,7 @@ const OpenSearchConfigForm = ({ databaseId, onDatabaseIdChange }: OpenSearchConf
       setConfig(newConfig);
     } else {
       const field = openSearchConfigFields[name as keyof typeof openSearchConfigFields];
-      const processedValue = field.type === 'number' ? Number(value) : value;
+      const processedValue = (field.type === 'number' || field.type === 'integer') ? Number(value) : value;
       setConfig((prev: OpenSearchConfig) => ({
         ...prev,
         [name]: processedValue

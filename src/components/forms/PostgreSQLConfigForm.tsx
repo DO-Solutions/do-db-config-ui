@@ -24,7 +24,7 @@ const PostgreSQLConfigForm = ({ databaseId, onDatabaseIdChange }: PostgreSQLConf
       )?.[1];
       
       const field = section?.fields?.[name];
-      const processedValue = field?.type === 'number' ? Number(value) : value;
+      const processedValue = (field?.type === 'number' || field?.type === 'integer') ? Number(value) : value;
       setConfig(prev => ({
         ...prev,
         [name]: processedValue

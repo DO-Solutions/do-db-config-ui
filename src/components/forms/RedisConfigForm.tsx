@@ -19,7 +19,7 @@ const RedisConfigForm = ({ databaseId, onDatabaseIdChange }: RedisConfigFormProp
       setConfig(newConfig);
     } else {
       const field = redisConfigFields[name as keyof typeof redisConfigFields];
-      const processedValue = field.type === 'number' ? Number(value) : value;
+      const processedValue = (field.type === 'number' || field.type === 'integer') ? Number(value) : value;
       setConfig((prev: RedisConfig) => ({
         ...prev,
         [name]: processedValue

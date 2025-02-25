@@ -12,56 +12,56 @@ export const kafkaConfigFields: Record<string, ConfigField> = {
     example: 'gzip'
   },
   group_initial_rebalance_delay_ms: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 300000,
     description: 'The amount of time, in milliseconds, the group coordinator will wait for more consumers to join a new group before performing the first rebalance. A longer delay means potentially fewer rebalances, but increases the time until processing begins.',
     example: 3000
   },
   group_min_session_timeout_ms: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 60000,
     description: 'The minimum allowed session timeout for registered consumers. Longer timeouts give consumers more time to process messages in between heartbeats at the cost of a longer time to detect failures.',
     example: 6000
   },
   group_max_session_timeout_ms: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 1800000,
     description: 'The maximum allowed session timeout for registered consumers. Longer timeouts give consumers more time to process messages in between heartbeats at the cost of a longer time to detect failures.',
     example: 1800000
   },
   connections_max_idle_ms: {
-    type: 'number',
+    type: 'integer',
     min: 1000,
     max: 3600000,
     description: 'Idle connections timeout: the server socket processor threads close the connections that idle for longer than this.',
     example: 540000
   },
   max_incremental_fetch_session_cache_slots: {
-    type: 'number',
+    type: 'integer',
     min: 1000,
     max: 10000,
-    description: 'The maximum number of incremental fetch sessions that the broker will maintain.',
+    description: 'The maximum integer of incremental fetch sessions that the broker will maintain.',
     example: 1000
   },
   message_max_bytes: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 100001200,
     description: 'The maximum size of message that the server can receive.',
     example: 1048588
   },
   offsets_retention_minutes: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 2147483647,
     description: 'Log retention window in minutes for offsets topic',
     example: 10080
   },
   log_cleaner_delete_retention_ms: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 315569260000,
     description: 'How long are delete records retained?',
@@ -75,14 +75,14 @@ export const kafkaConfigFields: Record<string, ConfigField> = {
     example: 0.5
   },
   log_cleaner_max_compaction_lag_ms: {
-    type: 'number',
+    type: 'integer',
     min: 30000,
     max: 9223372036854776000,
     description: 'The maximum amount of time message will remain uncompacted. Only applicable for logs that are being compacted',
     example: 60000
   },
   log_cleaner_min_compaction_lag_ms: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 9223372036854776000,
     description: 'The minimum time a message will remain uncompacted in the log. Only applicable for logs that are being compacted.',
@@ -95,28 +95,28 @@ export const kafkaConfigFields: Record<string, ConfigField> = {
     example: 'delete'
   },
   log_flush_interval_messages: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 9223372036854776000,
-    description: 'The number of messages accumulated on a log partition before messages are flushed to disk',
+    description: 'The integer of messages accumulated on a log partition before messages are flushed to disk',
     example: 9223372036854776000
   },
   log_flush_interval_ms: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 9223372036854776000,
     description: 'The maximum time in ms that a message in any topic is kept in memory before flushed to disk. If not set, the value in log.flush.scheduler.interval.ms is used',
     example: 1000000
   },
   log_index_interval_bytes: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 104857600,
     description: 'The interval with which Kafka adds an entry to the offset index',
     example: 4096
   },
   log_index_size_max_bytes: {
-    type: 'number',
+    type: 'integer',
     min: 1048576,
     max: 104857600,
     description: 'The maximum size in bytes of the offset index',
@@ -133,7 +133,7 @@ export const kafkaConfigFields: Record<string, ConfigField> = {
     example: 'CreateTime'
   },
   log_message_timestamp_difference_max_ms: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 9223372036854776000,
     description: 'The maximum difference allowed between the timestamp when a broker receives a message and the timestamp specified in the message',
@@ -145,49 +145,49 @@ export const kafkaConfigFields: Record<string, ConfigField> = {
     
   },
   log_retention_bytes: {
-    type: 'number',
+    type: 'integer',
     min: -1,
     max: 9223372036854776000,
     description: 'The maximum size of the log before deleting messages',
     example: 1000000
   },
   log_retention_hours: {
-    type: 'number',
+    type: 'integer',
     min: -1,
     max: 2147483647,
-    description: 'The number of hours to keep a log file before deleting it',
+    description: 'The integer of hours to keep a log file before deleting it',
     example: 1000000
   },
   log_retention_ms: {
-    type: 'number',
+    type: 'integer',
     min: -1,
     max: 9223372036854776000,
-    description: 'The number of milliseconds to keep a log file before deleting it (in milliseconds), If not set, the value in log.retention.minutes is used. If set to -1, no time limit is applied.',
+    description: 'The integer of milliseconds to keep a log file before deleting it (in milliseconds), If not set, the value in log.retention.minutes is used. If set to -1, no time limit is applied.',
     example: 100000000
   },
   log_roll_jitter_ms: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 9223372036854776000,
     description: 'The maximum jitter to subtract from logRollTimeMillis (in milliseconds). If not set, the value in log.roll.jitter.hours is used',
     example: 10000000
   },
   log_roll_ms: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 9223372036854776000,
     description: 'The maximum time before a new log segment is rolled out (in milliseconds).',
     example: 1000000
   },
   log_segment_bytes: {
-    type: 'number',
+    type: 'integer',
     min: 10485760,
     max: 1073741824,
     description: 'The maximum size of a single log file',
     example: 100000000
   },
   log_segment_delete_delay_ms: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 3600000,
     description: 'The amount of time to wait before deleting a file from the filesystem',
@@ -198,73 +198,73 @@ export const kafkaConfigFields: Record<string, ConfigField> = {
     description: 'Enable auto creation of topics'
   },
   min_insync_replicas: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 7,
-    description: 'When a producer sets acks to \'all\' (or \'-1\'), min_insync_replicas specifies the minimum number of replicas that must acknowledge a write for the write to be considered successful.',
+    description: 'When a producer sets acks to \'all\' (or \'-1\'), min_insync_replicas specifies the minimum integer of replicas that must acknowledge a write for the write to be considered successful.',
     example: 1
   },
   num_partitions: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 1000,
-    description: 'Number of partitions for autocreated topics',
+    description: 'integer of partitions for autocreated topics',
     example: 10
   },
   default_replication_factor: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 10,
     description: 'Replication factor for autocreated topics',
     example: 2
   },
   replica_fetch_max_bytes: {
-    type: 'number',
+    type: 'integer',
     min: 1048576,
     max: 104857600,
-    description: 'The number of bytes of messages to attempt to fetch for each partition. This is not an absolute maximum, if the first record batch in the first non-empty partition of the fetch is larger than this value, the record batch will still be returned to ensure that progress can be made.',
+    description: 'The integer of bytes of messages to attempt to fetch for each partition. This is not an absolute maximum, if the first record batch in the first non-empty partition of the fetch is larger than this value, the record batch will still be returned to ensure that progress can be made.',
     example: 2097152
   },
   replica_fetch_response_max_bytes: {
-    type: 'number',
+    type: 'integer',
     min: 10485760,
     max: 1048576000,
     description: 'Maximum bytes expected for the entire fetch response. Records are fetched in batches, and if the first record batch in the first non-empty partition of the fetch is larger than this value, the record batch will still be returned to ensure that progress can be made.',
     example: 20971520
   },
   max_connections_per_ip: {
-    type: 'number',
+    type: 'integer',
     min: 256,
     max: 2147483647,
-    description: 'The maximum number of connections allowed from each ip address.',
+    description: 'The maximum integer of connections allowed from each ip address.',
     example: 512
   },
   producer_purgatory_purge_interval_requests: {
-    type: 'number',
+    type: 'integer',
     min: 10,
     max: 10000,
-    description: 'The purge interval (in number of requests) of the producer request purgatory.',
+    description: 'The purge interval (in integer of requests) of the producer request purgatory.',
     example: 100
   },
   socket_request_max_bytes: {
-    type: 'number',
+    type: 'integer',
     min: 10485760,
     max: 209715200,
-    description: 'The maximum number of bytes in a socket request.',
+    description: 'The maximum integer of bytes in a socket request.',
     example: 20971520
   },
   transaction_state_log_segment_bytes: {
-    type: 'number',
+    type: 'integer',
     min: 1048576,
     max: 2147483647,
     description: 'The transaction topic segment bytes should be kept relatively small in order to facilitate faster log compaction and cache loads.',
     example: 104857600
   },
   transaction_remove_expired_transaction_cleanup_interval_ms: {
-    type: 'number',
+    type: 'integer',
     min: 600000,
     max: 3600000,
     description: 'The interval at which to remove transactions that have expired due to transactional.id.expiration.ms passing.',
     example: 3600000
   }
-}; 
+};

@@ -20,7 +20,7 @@ const MongoConfigForm = ({ databaseId, onDatabaseIdChange }: MongoConfigFormProp
       setConfig(newConfig);
     } else {
       const field = mongoConfigFields[name as keyof typeof mongoConfigFields];
-      const processedValue = field.type === 'number' ? Number(value) : value;
+      const processedValue = (field.type === 'number' || field.type === 'integer') ? Number(value) : value;
       setConfig((prev: MongoConfig) => ({
         ...prev,
         [name]: processedValue

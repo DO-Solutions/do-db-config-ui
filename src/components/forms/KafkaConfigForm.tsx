@@ -20,7 +20,7 @@ const KafkaConfigForm = ({ databaseId, onDatabaseIdChange }: KafkaConfigFormProp
       setConfig(newConfig);
     } else {
       const field = kafkaConfigFields[name as keyof typeof kafkaConfigFields];
-      const processedValue = field.type === 'number' ? Number(value) : value;
+      const processedValue = (field.type === 'number' || field.type === 'integer') ? Number(value) : value;
       setConfig((prev: KafkaConfig) => ({
         ...prev,
         [name]: processedValue

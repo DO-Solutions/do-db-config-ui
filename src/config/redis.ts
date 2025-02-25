@@ -19,35 +19,35 @@ volatile-ttl: Evict keys with expiration only, shortest time-to-live (TTL) first
     example: 'volatile_lru'
   },
   redis_pubsub_client_output_buffer_limit: {
-    type: 'number',
+    type: 'integer',
     min: 32,
     max: 512,
     description: 'Set output buffer limit for pub/sub clients in MB. The value is the hard limit, the soft limit is 1/4 of the hard limit. When setting the limit, be mindful of the available memory in the selected service plan.',
     example: 128
   },
   redis_number_of_databases: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 128,
     description: 'Set number of redis databases. Changing this will cause a restart of redis service.',
     example: 4
   },
   redis_io_threads: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 32,
     description: 'Redis IO thread count',
     example: 4
   },
   redis_lfu_log_factor: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 100,
     description: 'Counter logarithm factor for volatile-lfu and allkeys-lfu maxmemory-policies',
     example: 12
   },
   redis_lfu_decay_time: {
-    type: 'number',
+    type: 'integer',
     min: 1,
     max: 120,
     description: 'LFU maxmemory-policy counter decay time in minutes',
@@ -58,7 +58,7 @@ volatile-ttl: Evict keys with expiration only, shortest time-to-live (TTL) first
     description: 'Require SSL to access Redis. When enabled, Redis accepts only SSL connections on port `25061`. When disabled, port `25060` is opened for non-SSL connections, while port `25061` remains available for SSL connections.',
   },
   redis_timeout: {
-    type: 'number',
+    type: 'integer',
     min: 0,
     max: 31536000,
     description: 'Redis idle connection timeout in seconds',

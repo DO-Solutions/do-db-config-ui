@@ -5,6 +5,25 @@ import RedisConfigForm from './forms/RedisConfigForm';
 import MongoConfigForm from './forms/MongoConfigForm';
 import KafkaConfigForm from './forms/KafkaConfigForm';
 import OpenSearchConfigForm from './forms/OpenSearchConfigForm';
+import { 
+  mysqlConfigFields, 
+  postgresConfigFields, 
+  redisConfigFields, 
+  mongoConfigFields, 
+  kafkaConfigFields, 
+  openSearchConfigFields 
+} from '../config';
+
+// Calculate configuration option counts for each database type
+const configCounts = {
+  mysql: Object.keys(mysqlConfigFields).length,
+  postgres: Object.values(postgresConfigFields).reduce((count, section) => 
+    count + Object.keys(section.fields).length, 0),
+  redis: Object.keys(redisConfigFields).length,
+  mongodb: Object.keys(mongoConfigFields).length,
+  kafka: Object.keys(kafkaConfigFields).length,
+  opensearch: Object.keys(openSearchConfigFields).length
+};
 
 const DatabaseConfigApp = () => {
   const [activeTab, setActiveTab] = useState('mysql');
@@ -18,6 +37,11 @@ const DatabaseConfigApp = () => {
     { id: 'kafka', name: 'Kafka' },
     { id: 'opensearch', name: 'OpenSearch' }
   ];
+
+  const getFormattedDatabaseName = () => {
+    const tab = tabs.find(tab => tab.id === activeTab);
+    return tab ? tab.name : activeTab.charAt(0).toUpperCase() + activeTab.slice(1);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 text-black p-6">
@@ -71,6 +95,18 @@ const DatabaseConfigApp = () => {
           </div>
 
           <div className="p-6">
+            {/* Configuration options heading with count */}
+            <div className="mb-8">
+              <div className="flex items-center mb-6">
+                <h2 className="text-xl font-semibold text-gray-800">
+                  {getFormattedDatabaseName()} Configuration Options
+                </h2>
+                <div className="ml-4 px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+                  {configCounts[activeTab]} options
+                </div>
+              </div>
+            </div>
+
             {activeTab === 'mysql' && (
               <MySQLConfigForm 
                 databaseId={databaseId}

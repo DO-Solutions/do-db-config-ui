@@ -30,9 +30,33 @@ const ConfigField = ({ name, field, onChange, value }: ConfigFieldProps) => {
   return (
     <div className="p-4 bg-white rounded-lg border border-gray-200">
       <div className="space-y-2">
-        <label className="block font-medium text-lg text-black" htmlFor={name}>
-          {name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-        </label>
+        <div className="flex items-center space-x-2">
+          <label className="block font-medium text-lg text-black" htmlFor={name}>
+            {name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+          </label>
+          
+          {/* Type badge */}
+          <div className="inline-flex items-center">
+            {field.type === 'boolean' && (
+              <span className="px-2 py-1 text-xs rounded bg-purple-100 text-purple-800 font-medium">boolean</span>
+            )}
+            {field.type === 'integer' && (
+              <span className="px-2 py-1 text-xs rounded bg-green-100 text-green-800 font-medium">integer</span>
+            )}
+            {field.type === 'number' && (
+              <span className="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800 font-medium">number</span>
+            )}
+            {(field.type === 'string' || field.type === 'text') && (
+              <span className="px-2 py-1 text-xs rounded bg-yellow-100 text-yellow-800 font-medium">string</span>
+            )}
+            {field.type === 'select' && (
+              <span className="px-2 py-1 text-xs rounded bg-yellow-100 text-yellow-800 font-medium">string</span>
+            )}
+            {field.type === 'checkbox' && (
+              <span className="px-2 py-1 text-xs rounded bg-purple-100 text-purple-800 font-medium">boolean</span>
+            )}
+          </div>
+        </div>
         
         {field.type === 'select' ? (
           <select
