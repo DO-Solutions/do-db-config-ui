@@ -20,7 +20,7 @@ const MySQLConfigForm = ({ databaseId, onDatabaseIdChange }: MySQLConfigFormProp
     } else {
       // Convert string values to numbers for numeric fields
       const field = mysqlConfigFields[name as keyof typeof mysqlConfigFields];
-      const processedValue = field.type === 'number' ? Number(value) : value;
+      const processedValue = (field.type === 'number' || field.type === 'integer') ? Number(value) : value;
       setConfig(prev => ({
         ...prev,
         [name]: processedValue
