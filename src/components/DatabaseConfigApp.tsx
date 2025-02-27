@@ -13,6 +13,7 @@ import {
   kafkaConfigFields, 
   openSearchConfigFields 
 } from '../config';
+import { VERSION } from '../version';
 
 // Calculate configuration option counts for each database type
 const configCounts = {
@@ -174,6 +175,8 @@ const DatabaseConfigApp = () => {
             >
               View on GitHub
             </a>
+            <span className="mx-2">•</span>
+            <span className="text-gray-500">v{VERSION}</span>
           </p>
         </div>
       </div>
