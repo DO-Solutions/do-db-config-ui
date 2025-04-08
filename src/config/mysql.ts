@@ -1,5 +1,5 @@
 export interface ConfigField {
-  type: 'number' | 'text' | 'select' | 'checkbox' | 'integer';
+  type: 'number' | 'text' | 'select' | 'checkbox' | 'integer' | 'array';
   min?: number;
   max?: number;
   minLength?: number;
