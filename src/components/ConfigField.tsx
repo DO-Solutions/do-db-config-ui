@@ -49,6 +49,9 @@ const ConfigField = ({ name, field, onChange, value }: ConfigFieldProps) => {
             {(field.type === 'string' || field.type === 'text') && (
               <span className="px-2 py-1 text-xs rounded bg-yellow-100 text-yellow-800 font-medium">string</span>
             )}
+            {field.type === 'array' && (
+              <span className="px-2 py-1 text-xs rounded bg-orange-100 text-orange-800 font-medium">array</span>
+            )}
             {field.type === 'select' && (
               <span className="px-2 py-1 text-xs rounded bg-yellow-100 text-yellow-800 font-medium">string</span>
             )}
