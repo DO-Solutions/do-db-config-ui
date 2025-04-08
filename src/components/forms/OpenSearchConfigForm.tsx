@@ -20,7 +20,15 @@ const OpenSearchConfigForm = ({ databaseId, onDatabaseIdChange }: OpenSearchConf
       setConfig(newConfig);
     } else {
       const field = openSearchConfigFields[name as keyof typeof openSearchConfigFields];
-      const processedValue = (field.type === 'number' || field.type === 'integer') ? Number(value) : value;
+      let processedValue = value;
+      
+      if (field.type === 'number' || field.type === 'integer') {
+        processedValue = Number(value);
+      } else if (field.type === 'array' && typeof value === 'string') {
+        // Split the string by commas and trim whitespace
+        processedValue = value.split(',').map((item: string) => item.trim());
+      }
+      
       setConfig((prev: OpenSearchConfig) => ({
         ...prev,
         [name]: processedValue
