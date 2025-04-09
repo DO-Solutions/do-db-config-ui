@@ -2,7 +2,7 @@ export const generateCommands = (databaseId: string, config: any, engine: string
   if (!databaseId || Object.keys(config).length === 0) return { curl: '', doctl: '' };
   
   const jsonBody = JSON.stringify({ config }, null, 2);
-  const compactJsonBody = JSON.stringify(config);
+  const compactJsonBody = JSON.stringify({ config });
 
   return {
     curl: `curl -X PATCH \\
