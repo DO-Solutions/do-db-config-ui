@@ -243,7 +243,7 @@ export const openSearchConfigFields: Record<string, ConfigField> = {
   reindex_remote_whitelist: {
     type: 'array',
     description: 'Allowlist of remote IP addresses for reindexing. Changing this value will cause all OpenSearch instances to restart.',
-    example: ['192.168.1.1', '10.0.0.1']
+    example: ['192.168.1.1:9200', '10.0.0.1:9200']
   },
   plugins_alerting_filter_by_backend_roles_enabled: {
     type: 'checkbox',
