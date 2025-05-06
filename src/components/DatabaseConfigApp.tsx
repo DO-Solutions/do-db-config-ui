@@ -168,7 +168,7 @@ const DatabaseConfigApp = () => {
           </p>
           <p className="text-sm mt-2">
             <a 
-              href="https://github.com/jkpe/do-db-config-ui"
+              href="https://github.com/DO-Solutions/do-db-config-ui"
               className="text-blue-600 hover:text-blue-800"
               target="_blank"
               rel="noopener noreferrer"
