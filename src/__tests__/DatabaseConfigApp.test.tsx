@@ -15,7 +15,7 @@ describe('DatabaseConfigApp', () => {
     // Check if all database type tabs are present
     expect(screen.getByText('MySQL')).toBeInTheDocument();
     expect(screen.getByText('PostgreSQL')).toBeInTheDocument();
-    expect(screen.getByText('Caching')).toBeInTheDocument();
+    expect(screen.getByText('Valkey')).toBeInTheDocument();
     expect(screen.getByText('MongoDB')).toBeInTheDocument();
     expect(screen.getByText('Kafka')).toBeInTheDocument();
     expect(screen.getByText('OpenSearch')).toBeInTheDocument();

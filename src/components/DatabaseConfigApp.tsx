@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import MySQLConfigForm from './forms/MySQLConfigForm';
 import PostgreSQLConfigForm from './forms/PostgreSQLConfigForm';
-import RedisConfigForm from './forms/RedisConfigForm';
+import ValkeyConfigForm from './forms/ValkeyConfigForm';
 import MongoConfigForm from './forms/MongoConfigForm';
 import KafkaConfigForm from './forms/KafkaConfigForm';
 import OpenSearchConfigForm from './forms/OpenSearchConfigForm';
 import { 
   mysqlConfigFields, 
   postgresConfigFields, 
-  redisConfigFields, 
+  valkeyConfigFields, 
   mongoConfigFields, 
   kafkaConfigFields, 
   openSearchConfigFields 
@@ -20,7 +20,7 @@ const configCounts = {
   mysql: Object.keys(mysqlConfigFields).length,
   postgres: Object.values(postgresConfigFields).reduce((count, section) => 
     count + Object.keys(section.fields).length, 0),
-  redis: Object.keys(redisConfigFields).length,
+  valkey: Object.keys(valkeyConfigFields).length,
   mongodb: Object.keys(mongoConfigFields).length,
   kafka: Object.keys(kafkaConfigFields).length,
   opensearch: Object.keys(openSearchConfigFields).length
@@ -44,7 +44,7 @@ const DatabaseConfigApp = () => {
   const tabs = [
     { id: 'mysql', name: 'MySQL' },
     { id: 'postgres', name: 'PostgreSQL' },
-    { id: 'redis', name: 'Caching' },
+    { id: 'valkey', name: 'Valkey' },
     { id: 'mongodb', name: 'MongoDB' },
     { id: 'kafka', name: 'Kafka' },
     { id: 'opensearch', name: 'OpenSearch' }
@@ -133,8 +133,8 @@ const DatabaseConfigApp = () => {
                 onDatabaseIdChange={setDatabaseId}
               />
             )}
-            {activeTab === 'redis' && (
-              <RedisConfigForm 
+            {activeTab === 'valkey' && (
+              <ValkeyConfigForm 
                 databaseId={databaseId}
                 onDatabaseIdChange={setDatabaseId}
               />
