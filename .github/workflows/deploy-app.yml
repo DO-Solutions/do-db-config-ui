@@ -17,5 +17,4 @@ jobs:
      - name: Deploy the app
        uses: digitalocean/app_action/deploy@v2.0.9
        with:
-         token: ${{ secrets.DO_TOKEN }} 
-         project_id: d3317450-0e85-40b3-907a-4c16edea7bf0
+         token: ${{ secrets.DO_TOKEN }}

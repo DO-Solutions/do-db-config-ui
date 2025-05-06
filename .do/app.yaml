@@ -1,6 +1,9 @@
 alerts:
 - rule: DEPLOYMENT_FAILED
 - rule: DOMAIN_FAILED
+domains:
+- domain: dbconfig.labs.jackpearce.co.uk
+  type: PRIMARY
 features:
 - buildpack-stack=ubuntu-22
 ingress:
