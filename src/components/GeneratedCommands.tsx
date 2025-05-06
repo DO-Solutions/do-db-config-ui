@@ -7,9 +7,10 @@ interface GeneratedCommandsProps {
     doctl: string;
   };
   onCopy?: () => void;
+  showDoctlCommand?: boolean;
 }
 
-const GeneratedCommands = ({ commands, onCopy }: GeneratedCommandsProps) => {
+const GeneratedCommands = ({ commands, onCopy, showDoctlCommand = false }: GeneratedCommandsProps) => {
   const [curlCopied, setCurlCopied] = useState(false);
   const [doctlCopied, setDoctlCopied] = useState(false);
 
@@ -47,22 +48,24 @@ const GeneratedCommands = ({ commands, onCopy }: GeneratedCommandsProps) => {
           </pre>
         </div>
 
-        {/* doctl Command */}
-        <div>
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-medium">Generated <code>doctl</code> command</h2>
-            <button
-              onClick={() => handleCopy(commands.doctl, 'doctl')}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-            >
-              <Copy size={16} />
-              {doctlCopied ? 'Copied!' : 'Copy'}
-            </button>
+        {/* doctl Command - conditionally rendered */}
+        {showDoctlCommand && (
+          <div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-medium">Generated <code>doctl</code> command</h2>
+              <button
+                onClick={() => handleCopy(commands.doctl, 'doctl')}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+              >
+                <Copy size={16} />
+                {doctlCopied ? 'Copied!' : 'Copy'}
+              </button>
+            </div>
+            <pre className="bg-gray-900 text-white p-6 rounded-lg overflow-x-auto">
+              {commands.doctl}
+            </pre>
           </div>
-          <pre className="bg-gray-900 text-white p-6 rounded-lg overflow-x-auto">
-            {commands.doctl}
-          </pre>
-        </div>
+        )}
       </div>
     </div>
   );
