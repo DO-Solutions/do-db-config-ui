@@ -20,7 +20,7 @@ static_sites:
   github:
     branch: main
     deploy_on_push: false
-    repo: jkpe/do-db-config-ui
+    repo: DO-Solutions/do-db-config-ui
   name: web
   source_dir: /
   build_command: npm run build
