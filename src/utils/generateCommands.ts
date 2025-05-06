@@ -2,7 +2,7 @@ export const generateCommands = (databaseId: string, config: any, engine: string
   if (!databaseId || Object.keys(config).length === 0) return { curl: '', doctl: '' };
   
   const jsonBody = JSON.stringify({ config }, null, 2);
-  const compactJsonBody = JSON.stringify({ config });
+  const configJsonBody = JSON.stringify(config);
 
   return {
     curl: `curl -X PATCH \\
@@ -11,6 +11,6 @@ export const generateCommands = (databaseId: string, config: any, engine: string
   -d '${jsonBody}' \\
   "https://api.digitalocean.com/v2/databases/${databaseId}/config"`,
     
-    doctl: `doctl databases configuration update ${databaseId} --engine ${engine} --config-json '${compactJsonBody}'`
+    doctl: `doctl databases configuration update ${databaseId} --engine ${engine} --config-json '${configJsonBody}'`
   };
 }; 
