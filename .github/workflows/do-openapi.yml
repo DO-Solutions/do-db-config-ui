@@ -37,9 +37,11 @@ jobs:
 
       - name: Check if PR exists
         id: check-pr
+        env:
+          LATEST_SHA: ${{ steps.get-commit.outputs.latest_sha }}
         run: |
           # Get the count of PRs matching the commit SHA
-          PR_COUNT=$(gh pr list --state all --search ${{ steps.get-commit.outputs.latest_sha }} --json number --jq length)
+          PR_COUNT=$(gh pr list --state all --search $LATEST_SHA --json number --jq length)
           echo "Number of matching PRs found: $PR_COUNT"
           echo "exists=$PR_COUNT" >> $GITHUB_OUTPUT
         env:
@@ -47,13 +49,18 @@ jobs:
 
       - name: Create branch and PR if needed
         if: steps.check-pr.outputs.exists == '0'
+        env:
+          LATEST_SHA: ${{ steps.get-commit.outputs.latest_sha }}
+          COMMIT_MESSAGE: ${{ steps.get-commit.outputs.commit_message }}
+          COMMIT_URL: ${{ steps.get-commit.outputs.commit_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Create a new branch
-          BRANCH_NAME="do-openapi-update-${{ steps.get-commit.outputs.latest_sha }}"
+          BRANCH_NAME="do-openapi-update-$LATEST_SHA"
           git checkout -b $BRANCH_NAME
 
           # Create a commit marker file or update existing one
-          echo "${{ steps.get-commit.outputs.latest_sha }}" > .do-openapi-commit
+          echo "$LATEST_SHA" > .do-openapi-commit
           git add .do-openapi-commit
           git commit -m "Track DO OpenAPI database config update"
 
@@ -62,13 +69,11 @@ jobs:
 
           # Create PR with properly escaped commit message
           gh pr create \
-            --title "DO OpenAPI Database Config Update: ${{ steps.get-commit.outputs.latest_sha }}" \
+            --title "DO OpenAPI Database Config Update: $LATEST_SHA" \
             --body "This PR tracks changes to the DigitalOcean OpenAPI database configuration.
 
-            Latest commit: ${{ steps.get-commit.outputs.commit_message }}
+            Latest commit: $COMMIT_MESSAGE
             
-            Commit URL: ${{ steps.get-commit.outputs.commit_url }}
+            Commit URL: $COMMIT_URL
 
             Please review the changes in the OpenAPI specification and update the application accordingly."
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
