@@ -249,5 +249,17 @@ export const openSearchConfigFields: Record<string, ConfigField> = {
     type: 'checkbox',
     description: 'Enable or disable filtering of alerting by backend roles.',
     example: true
+  },
+  knn_memory_circuit_breaker_enabled: {
+    type: 'checkbox',
+    description: 'Enable or disable KNN memory circuit breaker.',
+    example: true
+  },
+  knn_memory_circuit_breaker_limit: {
+    type: 'integer',
+    min: 3,
+    max: 100,
+    description: 'Maximum amount of memory that can be used for KNN index, as a percentage of the JVM heap size.',
+    example: 60
   }
 }; 
