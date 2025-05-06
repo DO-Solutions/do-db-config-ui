@@ -1,6 +1,6 @@
 # Configure Advanced Settings for DigitalOcean Managed Databases
 
-[![Changelog](https://img.shields.io/github/v/release/jkpe/do-db-config-ui?include_prereleases&label=changelog)](https://github.com/jkpe/do-db-config-ui/releases)
+[![Changelog](https://img.shields.io/github/v/release/DO-Solutions/do-db-config-ui?include_prereleases&label=changelog)](https://github.com/DO-Solutions/do-db-config-ui/releases)
 
 This project is a web application built with React and React Router that provides a user interface for configuring advanced settings on DigitalOcean Managed Databases. The tool allows you to customize configuration options for various database engines (MySQL, PostgreSQL, Valkey, MongoDB, Kafka, OpenSearch) and then generates API requests (including preformatted `curl` and `doctl` commands) so you can update your databases via DigitalOcean's API.
 
@@ -10,7 +10,7 @@ This project is a web application built with React and React Router that provide
 
 You can deploy your own instance of this application to DigitalOcean App Platform with just a few clicks using the button below:
 
-[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/jkpe/do-db-config-ui/tree/main)
+[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/DO-Solutions/do-db-config-ui/tree/main)
 
 The deployment will automatically configure everything needed to run the application, including building from source and setting up the web service.
 

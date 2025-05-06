@@ -17,10 +17,9 @@ name: do-db-config-ui
 region: lon
 static_sites:
 - environment_slug: node-js
-  github:
+  git:
     branch: main
-    deploy_on_push: false
-    repo: jkpe/do-db-config-ui
+    repo_clone_url: https://github.com/DO-Solutions/do-db-config-ui
   name: web
   source_dir: /
   build_command: npm run build
